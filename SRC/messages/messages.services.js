@@ -27,7 +27,7 @@ const createMessages = (req, res) => {
 };
 
 const getMessageByConversation = (req, res) => {
-	const conversationId = req.params.id;
+	const conversationId = req.params.conversation_id;
 	controllers
 		.getMessageByConversation(conversationId)
 		.then((data) => res.status(200).json(data))
@@ -35,7 +35,7 @@ const getMessageByConversation = (req, res) => {
 };
 
 const getMessageById = (req, res) => {
-	const id = req.params.id;
+	const id = req.params.message_id;
 	controllers
 		.getMessagesById(id)
 		.then((data) => {
@@ -49,7 +49,7 @@ const getMessageById = (req, res) => {
 };
 
 const deleteMessage = (req, res) => {
-	const id = req.params.id;
+	const id = req.params.message_id;
 	controllers
 		.deleteMessage(id)
 		.then((data) => {

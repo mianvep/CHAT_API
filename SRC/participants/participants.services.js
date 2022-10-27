@@ -26,7 +26,7 @@ const createParticipant = (req, res) => {
 };
 
 const getParticipantByConversation = (req, res) => {
-	const conversationId = req.params.id;
+	const conversationId = req.params.conversation_id;
 	controllers
 		.getParticipantByConversation(conversationId)
 		.then((data) => res.status(200).json(data))

@@ -28,7 +28,7 @@ router
 	);
 
 router
-	.route("/:id")
+	.route("/:conversation_id")
 	.get(
 		passport.authenticate("jwt", { session: false }),
 		services.getConversationsById
@@ -45,20 +45,20 @@ router
 //! Messages sections
 //? Acá manejamos la ruta para obtener el mensaje de una conversacion (/api/v1/conversations/:conversation_id/messages)
 router.get(
-	"/:id/messages",
+	"/:conversation_id/messages",
 	passport.authenticate("jwt", { session: false }),
 	getMessageByConversation
 );
 
 //? Acá manejamos la ruta /api/v1/conversations/:conversation_id/messages/:message_id
 router
-	.route("/:id/messages/:id")
+	.route("/:conversation_id/messages/:message_id")
 	.get(passport.authenticate("jwt", { session: false }), getMessageById)
 	.delete(passport.authenticate("jwt", { session: false }), deleteMessage);
 
 //! Particiapnts section
 router
-	.route("/:id/participants")
+	.route("/:conversation_id/participants")
 	.get(
 		passport.authenticate("jwt", { session: false }),
 		getParticipantByConversation
@@ -66,7 +66,7 @@ router
 	.post(passport.authenticate("jwt", { session: false }), createParticipant);
 
 router
-	.route("/:id/participants/:id")
+	.route("/:conversation_id/participants/:id")
 	.get(passport.authenticate("jwt", { session: false }), getParticipantById)
 	.delete(passport.authenticate("jwt", { session: false }), deleteParticipant);
 
