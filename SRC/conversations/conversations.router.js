@@ -3,6 +3,7 @@ const {
 	getMessageByConversation,
 	getMessageById,
 	deleteMessage,
+	createMessages,
 } = require("../messages/messages.services");
 
 const {
@@ -44,11 +45,13 @@ router
 
 //! Messages sections
 //? Acá manejamos la ruta para obtener el mensaje de una conversacion (/api/v1/conversations/:conversation_id/messages)
-router.get(
-	"/:conversation_id/messages",
-	passport.authenticate("jwt", { session: false }),
-	getMessageByConversation
-);
+router
+	.get(
+		"/:conversation_id/messages",
+		passport.authenticate("jwt", { session: false }),
+		getMessageByConversation
+	)
+	.post(passport.authenticate("jwt", { session: false }), createMessages);
 
 //? Acá manejamos la ruta /api/v1/conversations/:conversation_id/messages/:message_id
 router
